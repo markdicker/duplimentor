@@ -137,7 +137,7 @@ class Duplimentor_CLI
                                     
                                     foreach ( $c as $cp )
                                     {
-                                        if ( substr_compare( $cp, "wp-image-", 0, 9 ) !== false )
+                                        if ( self::startsWith( $cp, "wp-image-" ) !== false )
                                         {
                                             $id = trim( substr( $cp, 9 ) );
 
@@ -661,6 +661,17 @@ class Duplimentor_CLI
     
         return (substr($haystack, -$length) === $needle);
     }
+
+    private function startsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+    
+        return (substr($haystack, 0, $length) === $needle);
+    }
+
 
 }
 WP_CLI::add_command( 'duplimentor', 'Duplimentor_CLI' );
