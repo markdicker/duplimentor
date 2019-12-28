@@ -1,0 +1,21 @@
+
+{
+    "name": "wp-cli/server-command",
+    "description": "Smart page export and import",
+    "type": "wp-cli-package",
+    "homepage": "https://github.com/wp-cli/server-command",
+    "license": "MIT",
+    "authors": [
+        {
+                "name": "Mark Dicker",
+                "email": "mark@markdicker.co.uk",
+                "homepage": "https://www.homepage.com"
+            }
+        ],
+    "require": {
+        "php": ">=5.3.29"
+    },
+    "autoload": {
+        "files": [ "duplimentor.php" ]
+    }
+}
