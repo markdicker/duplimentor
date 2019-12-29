@@ -1,10 +1,10 @@
 
 {
-    "name": "wp-cli/server-command",
+    "name": "markdicker/duplimentor",
     "description": "Smart page export and import",
     "type": "wp-cli-package",
-    "homepage": "https://github.com/markdicker/duplimentor",
-    "license": "MIT",
+    "homepage": "https://www.github.com/markdicker/duplimentor",
+    "license": "GPLv3",
     "authors": [
         {
                 "name": "Mark Dicker",
