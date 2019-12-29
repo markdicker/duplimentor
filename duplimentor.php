@@ -609,7 +609,7 @@ class Duplimentor_CLI
             }                
         }
         
-        WP_CLI::line( print_r( $page_map, true ) ) ;
+        // WP_CLI::line( print_r( $page_map, true ) ) ;
 
         // Now add all terms
 
@@ -651,6 +651,22 @@ class Duplimentor_CLI
                 }
             }
         }
+
+        // Relink the post parents
+
+        foreach ( $json as $entry )
+        {
+            if ( $entry->p->post_parent > 0 )
+            {
+                wp_update_post(
+                    array(
+                        'ID' => $page_map[ $entry->p->ID ],
+                        'post_parent' => $page_map[ $entry->p->post_parent ]
+                    )
+                );            
+            }
+        }
+
     }
     
     private function endsWith($haystack, $needle)
