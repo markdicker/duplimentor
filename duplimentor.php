@@ -345,7 +345,7 @@ class Duplimentor_CLI
                     {
                         if ( self::endsWith( $name, "image" ) || self::endsWith( $name, "image_mobile" ) || self::endsWith( $name, "image_tablet" ) )
                         {
-                            if ( $setting->id !== "" )
+                            if ( isset( $setting->id) && $setting->id !== "" )
                             {
                                 WP_CLI::line( $name." -> ".print_r( $setting, true ) );
 
