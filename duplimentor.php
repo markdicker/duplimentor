@@ -656,8 +656,8 @@ class Duplimentor_CLI
 
         foreach ( $json as $entry )
         {
-            if ( $entry->p->post_parent > 0 )
-            {
+            // if ( $entry->p->post_parent > 0 )
+            // {
 
                 WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] );
 
@@ -667,7 +667,7 @@ class Duplimentor_CLI
                         'post_parent' => $page_map[ $entry->p->post_parent ]
                     )
                 );            
-            }
+            // }
         }
 
     }
