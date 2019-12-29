@@ -347,7 +347,7 @@ class Duplimentor_CLI
                         {
                             if ( $setting->id !== "" )
                             {
-                                // WP_CLI::line( $name." -> ".print_r( $setting, true ) );
+                                WP_CLI::line( $name." -> ".print_r( $setting, true ) );
 
                                 $setting->id = $page_map[ $setting->id ];
                                 $setting->url = $image_map[ $setting->id ];
