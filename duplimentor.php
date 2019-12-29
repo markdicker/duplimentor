@@ -658,6 +658,9 @@ class Duplimentor_CLI
         {
             if ( $entry->p->post_parent > 0 )
             {
+
+                WP_CLI::line( $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] );
+                
                 wp_update_post(
                     array(
                         'ID' => $page_map[ $entry->p->ID ],
