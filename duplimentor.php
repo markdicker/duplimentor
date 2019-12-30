@@ -107,6 +107,9 @@ class Duplimentor_CLI
 
             foreach( $media as $m )
             {
+                if ( $m->ID == "" )
+                    WP_CLI::line( "attach media ID = []");
+
                 $post_images[ $m->ID ] = $m->ID;
             }
 
