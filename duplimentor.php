@@ -593,6 +593,8 @@ class Duplimentor_CLI
 
                     $id = $post->ID;
 
+                    WP_CLI::line( $entyry->p->ID . ' : '. $id );
+
                     wp_update_post( $entry->p );
                 }
                 else
