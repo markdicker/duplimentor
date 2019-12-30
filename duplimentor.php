@@ -204,14 +204,15 @@ class Duplimentor_CLI
             if ( $carry !== "" )
                 $comma = ",";
 
-            WP_CLI::line( print_r( $item, true ) );
+            WP_CLI::line( print_r( "[".$item."]", true ) );
 
-            if ( $item !== "" )
+            if ( $item != "" )
                 $carry .= $comma.$item;
 
             return $carry;
 
         }, "");
+
 
         $attachments = $wpdb->get_results( 
             $wpdb->prepare( "select * from `".$wpdb->prefix."posts` where ID in ( ".$attach_ids." )", "") 
