@@ -204,11 +204,13 @@ class Duplimentor_CLI
             if ( $carry !== "" )
                 $comma = ",";
 
+            WP_CLI::line( print_r( $item, true ) );
+
             if ( $item !== "" )
                 $carry .= $comma.$item;
 
             return $carry;
-            
+
         }, "");
 
         $attachments = $wpdb->get_results( 
