@@ -599,6 +599,8 @@ class Duplimentor_CLI
                     $old_id = $entry->p->ID;
                     $entry->p->ID = 0;
 
+                    unset( $entry->p->ID );
+
                     $id = wp_insert_post( $entry->p, true );
                     
                     if ( is_wp_error ( $id ) )
