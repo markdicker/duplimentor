@@ -606,7 +606,7 @@ class Duplimentor_CLI
                     
                     $id = wp_insert_post( $entry->p, true );
                     
-                    WP_CLI::line( $entry->p->ID . ' : '. $id );
+                    WP_CLI::line( $old_id . ' : '. $id );
 
                     if ( is_wp_error ( $id ) )
                     {
