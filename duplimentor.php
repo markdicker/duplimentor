@@ -147,7 +147,7 @@ class Duplimentor_CLI
                                             if ( $id != "" )
                                                 $post_images [ $id ] = $id;
                                             
-                                            WP_CLI::line( "wp-image id = ".$id ) ;
+                                            // WP_CLI::line( "wp-image id = ".$id ) ;
                                         }
                                     }
                                     
@@ -236,9 +236,11 @@ class Duplimentor_CLI
             $json[] = array( 'p' => $attachment, 't' => $terms, 'u' => str_replace( $upload_dir['basedir'], "/uploads", get_attached_file( $attachment->ID ) ) );
             
             // WP_CLI::line( "Copying ". $src." to ".$dest );
-            
-            $this->createFolder( $dest );
-            copy( $src, $dest );
+            if (file_exists( $src ))
+            {
+                $this->createFolder( $dest );
+                copy( $src, $dest );
+            }
         }
         
         //echo print_r( $json );
