@@ -141,10 +141,10 @@ class Duplimentor_CLI
                                         {
                                             $id = trim( substr( $cp, 9 ) );
 
-                                            if ( $id !== "" )
+                                            if ( $id != "" )
                                                 $post_images [ $id ] = $id;
                                             
-                                            // WP_CLI::line( "id = ".$id ) ;
+                                            WP_CLI::line( "wp-image id = ".$id ) ;
                                         }
                                     }
                                     
@@ -204,7 +204,7 @@ class Duplimentor_CLI
             if ( $carry !== "" )
                 $comma = ",";
 
-            WP_CLI::line( print_r( "[".$item."]", true ) );
+            // WP_CLI::line( print_r( "[".$item."]", true ) );
 
             if ( $item != "" )
                 $carry .= $comma.$item;
