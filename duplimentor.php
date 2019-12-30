@@ -659,7 +659,7 @@ class Duplimentor_CLI
             // if ( $entry->p->post_parent > 0 )
             // {
 
-                WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] . ' | ' . $entry->p->post_type );
+                WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] . ' | ' . $entry->p->post_type . ' -> '.$entry->p->post_title );
 
                 wp_update_post(
                     array(
