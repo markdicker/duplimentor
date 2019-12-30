@@ -599,8 +599,13 @@ class Duplimentor_CLI
                     $old_id = $entry->p->ID;
                     $entry->p->ID = 0;
 
-                    $id = wp_insert_post( $entry->p );
+                    $id = wp_insert_post( $entry->p, true );
                     
+                    if ( is_wp_error ( $id ) )
+                    {
+                        WP_CLI::error( $id->get_error_message );
+                    }
+
                     $page_map[ $old_id ] = $id;
 
                 }
