@@ -586,31 +586,34 @@ class Duplimentor_CLI
 
                 if ( $post != null )
                 {
-                    WP_CLI::line( 'Page found' );
+                    // WP_CLI::line( 'Page found' );
                     
-                    WP_CLI::line( $entry->p->ID . ' : '. $post->ID );
-                    
+                    // WP_CLI::line( $entry->p->ID . ' : '. $post->ID );
+                                                         
                     $page_map[ $entry->p->ID ] = $post->ID;
 
-                    $entry->p->ID = $post->ID;
+                    $new_post = clone $entry->p;
+                    $new_post->ID = $post->ID;
 
                     $id = $post->ID;
 
-
-                    wp_update_post( $entry->p );
+                    wp_update_post( $new_post );
                 }
                 else
                 {
-                    WP_CLI::line( 'Page not found : '. $entry->p->post_title );
+                    // WP_CLI::line( 'Page not found : '. $entry->p->post_title );
                     
                     $old_id = $entry->p->ID;
-                    $entry->p->ID = 0;
+
+                    $new_post = clone $entry->p;
+
+                    $new_post->ID = 0;
                     
-                    unset( $entry->p->ID );
+                    unset( $new_post->ID );
                     
-                    $id = wp_insert_post( $entry->p, true );
+                    $id = wp_insert_post( $new_post, true );
                     
-                    WP_CLI::line( $old_id . ' : '. $id );
+                    // WP_CLI::line( $old_id . ' : '. $id );
 
                     if ( is_wp_error ( $id ) )
                     {
@@ -625,7 +628,7 @@ class Duplimentor_CLI
             }                
         }
         
-        // WP_CLI::line( print_r( $page_map, true ) ) ;
+        WP_CLI::line( print_r( $page_map, true ) ) ;
 
         // Now add all terms
 
