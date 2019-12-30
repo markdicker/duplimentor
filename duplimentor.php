@@ -586,6 +586,7 @@ class Duplimentor_CLI
 
                 if ( $post != null )
                 {
+                    WP_CLI::line( 'Page found' );
                     $page_map[ $entry->p->ID ] = $post->ID;
 
                     $entry->p->ID = $post->ID;
@@ -596,6 +597,8 @@ class Duplimentor_CLI
                 }
                 else
                 {
+                    WP_CLI::line( 'Page not found : '. $entry->p->post_title );
+
                     $old_id = $entry->p->ID;
                     $entry->p->ID = 0;
 
