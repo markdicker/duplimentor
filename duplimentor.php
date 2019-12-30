@@ -141,7 +141,8 @@ class Duplimentor_CLI
                                         {
                                             $id = trim( substr( $cp, 9 ) );
 
-                                            $post_images [ $id ] = $id;
+                                            if ( $id !== "" )
+                                                $post_images [ $id ] = $id;
                                             
                                             // WP_CLI::line( "id = ".$id ) ;
                                         }
@@ -190,7 +191,7 @@ class Duplimentor_CLI
             
         }    
         
-        // WP_CLI::line( print_r( $post_images, true ) );              
+        WP_CLI::line( print_r( $post_images, true ) );              
         
         // add the images to the end of the posts array
 
