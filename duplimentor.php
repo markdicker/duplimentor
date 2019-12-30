@@ -197,8 +197,20 @@ class Duplimentor_CLI
 
         WP_CLI::line( "Exporting images" );
 
+        $attach_ids = array_reduce( $post_images, function ( $carry, $item )
+        {
+            $comma = "";
+
+            if ( $carry !== "" )
+                $comma = ",";
+
+            if ( $item !== "" )
+                $carry .= $comma.$item;
+
+        }, "");
+
         $attachments = $wpdb->get_results( 
-            $wpdb->prepare( "select * from `".$wpdb->prefix."posts` where ID in ( ".implode( ",", $post_images )." )", "") 
+            $wpdb->prepare( "select * from `".$wpdb->prefix."posts` where ID in ( ".$attach_ids." )", "") 
         );    
 
         foreach ( $attachments as $attachment )
