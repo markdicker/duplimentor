@@ -587,13 +587,15 @@ class Duplimentor_CLI
                 if ( $post != null )
                 {
                     WP_CLI::line( 'Page found' );
+                    
+                    WP_CLI::line( $entry->p->ID . ' : '. $post->ID );
+                    
                     $page_map[ $entry->p->ID ] = $post->ID;
 
                     $entry->p->ID = $post->ID;
 
                     $id = $post->ID;
 
-                    WP_CLI::line( $entry->p->ID . ' : '. $id );
 
                     wp_update_post( $entry->p );
                 }
