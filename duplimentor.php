@@ -194,7 +194,7 @@ class Duplimentor_CLI
             
         }    
         
-        WP_CLI::line( print_r( $post_images, true ) );              
+        // WP_CLI::line( print_r( $post_images, true ) );              
         
         // add the images to the end of the posts array
 
