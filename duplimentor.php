@@ -598,14 +598,16 @@ class Duplimentor_CLI
                 else
                 {
                     WP_CLI::line( 'Page not found : '. $entry->p->post_title );
-
+                    
                     $old_id = $entry->p->ID;
                     $entry->p->ID = 0;
-
+                    
                     unset( $entry->p->ID );
-
+                    
                     $id = wp_insert_post( $entry->p, true );
                     
+                    WP_CLI::line( $entry->p->ID . ' : '. $id );
+
                     if ( is_wp_error ( $id ) )
                     {
                         WP_CLI::error( $id->get_error_message );
