@@ -598,6 +598,8 @@ class Duplimentor_CLI
                     $id = $post->ID;
 
                     wp_update_post( $new_post );
+
+                    unset ( $new_post );
                 }
                 else
                 {
@@ -622,13 +624,14 @@ class Duplimentor_CLI
 
                     $page_map[ $old_id ] = $id;
 
+                    unset ( $new_post );
                 }
 
 
             }                
         }
         
-        WP_CLI::line( print_r( $page_map, true ) ) ;
+        // WP_CLI::line( print_r( $page_map, true ) ) ;
 
         // Now add all terms
 
@@ -678,7 +681,7 @@ class Duplimentor_CLI
             // if ( $entry->p->post_parent > 0 )
             // {
 
-                WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] . ' | ' . $entry->p->post_type . ' -> '.$entry->p->post_title );
+                // WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] . ' | ' . $entry->p->post_type . ' -> '.$entry->p->post_title );
 
                 wp_update_post(
                     array(
