@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Under%20Development-Not%20Ready%20Use-redß)
+![](https://img.shields.io/badge/Under%20Development-Not%20Ready%20For%20Use-red)
 
 # Duplimentor
 
