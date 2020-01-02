@@ -107,6 +107,9 @@ class Duplimentor_CLI
 
             foreach( $media as $m )
             {
+                if ( $m->ID == "" )
+                    WP_CLI::line( "attach media ID = []");
+
                 $post_images[ $m->ID ] = $m->ID;
             }
 
@@ -141,9 +144,10 @@ class Duplimentor_CLI
                                         {
                                             $id = trim( substr( $cp, 9 ) );
 
-                                            $post_images [ $id ] = $id;
+                                            if ( $id != "" )
+                                                $post_images [ $id ] = $id;
                                             
-                                            // WP_CLI::line( "id = ".$id ) ;
+                                            // WP_CLI::line( "wp-image id = ".$id ) ;
                                         }
                                     }
                                     
@@ -196,8 +200,25 @@ class Duplimentor_CLI
 
         WP_CLI::line( "Exporting images" );
 
+        $attach_ids = array_reduce( $post_images, function ( $carry, $item )
+        {
+            $comma = "";
+
+            if ( $carry !== "" )
+                $comma = ",";
+
+            // WP_CLI::line( print_r( "[".$item."]", true ) );
+
+            if ( $item != "" )
+                $carry .= $comma.$item;
+
+            return $carry;
+
+        }, "");
+
+
         $attachments = $wpdb->get_results( 
-            $wpdb->prepare( "select * from `".$wpdb->prefix."posts` where ID in ( ".implode( ",", $post_images )." )", "") 
+            $wpdb->prepare( "select * from `".$wpdb->prefix."posts` where ID in ( ".$attach_ids." )", "") 
         );    
 
         foreach ( $attachments as $attachment )
@@ -215,9 +236,11 @@ class Duplimentor_CLI
             $json[] = array( 'p' => $attachment, 't' => $terms, 'u' => str_replace( $upload_dir['basedir'], "/uploads", get_attached_file( $attachment->ID ) ) );
             
             // WP_CLI::line( "Copying ". $src." to ".$dest );
-            
-            $this->createFolder( $dest );
-            copy( $src, $dest );
+            if (file_exists( $src ))
+            {
+                $this->createFolder( $dest );
+                copy( $src, $dest );
+            }
         }
         
         //echo print_r( $json );
@@ -598,6 +621,8 @@ class Duplimentor_CLI
                     $id = $post->ID;
 
                     wp_update_post( $new_post );
+
+                    unset ( $new_post );
                 }
                 else
                 {
@@ -622,13 +647,14 @@ class Duplimentor_CLI
 
                     $page_map[ $old_id ] = $id;
 
+                    unset ( $new_post );
                 }
 
 
             }                
         }
         
-        WP_CLI::line( print_r( $page_map, true ) ) ;
+        // WP_CLI::line( print_r( $page_map, true ) ) ;
 
         // Now add all terms
 
@@ -678,7 +704,7 @@ class Duplimentor_CLI
             // if ( $entry->p->post_parent > 0 )
             // {
 
-                WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] . ' | ' . $entry->p->post_type . ' -> '.$entry->p->post_title );
+                // WP_CLI::line( $entry->p->ID ." -> ". $page_map[ $entry->p->ID ] ." | ". $entry->p->post_parent ." -> ". $page_map[ $entry->p->post_parent ] . ' | ' . $entry->p->post_type . ' -> '.$entry->p->post_title );
 
                 wp_update_post(
                     array(
