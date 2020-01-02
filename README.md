@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Under%20Development-Not%20Ready%20Use-redß)
+
 # Duplimentor
 
 Creates an archive of pages and Elementor templates that can then be imported into an existing WP installation.  Copies all meta data used by Elementor.
